@@ -56,14 +56,10 @@ def select_template(language_code):
         "en-us": "en-us",
     }
 
-    template = get_data(
+    return get_data(
         __package__,
-        "licenses/996.icu.template.{}.txt".format(
-            map_.get(language_code, "zh-cn")
-        )
+        f'licenses/996.icu.template.{map_.get(language_code, "zh-cn")}.txt',
     ).decode("utf-8")
-
-    return template
 
 
 def main():
@@ -74,7 +70,6 @@ def main():
         for license in LICENSES:
             print(license)
 
-        exit(0)
     else:  # main
 
         # if no args input, show help and exit
@@ -101,4 +96,5 @@ def main():
         with open("LICENSE", "wb") as file:
             file.write(output)
 
-        exit(0)
+
+    exit(0)
